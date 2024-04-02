@@ -32,7 +32,28 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getDataById = catchAsync(async (req: Request, res: Response) => {
+  const result = await AcademicSemesterService.getDataById(req.params.id);
+
+  if (result) {
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Single academic semester data fetched',
+      data: result,
+    });
+  } else {
+    sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: 'Single academic semester not found',
+      data: {},
+    });
+  }
+});
+
 export const AcademicSemesterController = {
   insertIntoDB,
   getAllFromDB,
+  getDataById,
 };
