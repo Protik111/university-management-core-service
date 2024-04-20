@@ -9,11 +9,10 @@ import { AcademicSemesterService } from './academicSemester.service';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await AcademicSemesterService.insertIntoDB(req.body);
-
   sendResponse<AcademicSemester>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic semester has been created!',
+    message: 'Academic Semster Created!!',
     data: result,
   });
 });
@@ -26,7 +25,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic semester data fetched',
+    message: 'Academic Semster data fetched!!',
     meta: result.meta,
     data: result.data,
   });
@@ -34,26 +33,40 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 
 const getDataById = catchAsync(async (req: Request, res: Response) => {
   const result = await AcademicSemesterService.getDataById(req.params.id);
-
-  if (result) {
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Single academic semester data fetched',
-      data: result,
-    });
-  } else {
-    sendResponse(res, {
-      statusCode: httpStatus.NOT_FOUND,
-      success: false,
-      message: 'Single academic semester not found',
-      data: {},
-    });
-  }
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semster data fetched!!',
+    data: result,
+  });
 });
 
-export const AcademicSemesterController = {
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AcademicSemesterService.updateOneInDB(id, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semster updated successfully',
+    data: result,
+  });
+});
+
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AcademicSemesterService.deleteByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semster delete successfully',
+    data: result,
+  });
+});
+
+export const AcademicSemeterController = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
+  updateOneInDB,
+  deleteByIdFromDB,
 };
