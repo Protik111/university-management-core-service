@@ -93,7 +93,7 @@ model Student {
 
 model Faculty {
   id           String   @id @default(uuid())
-  facultytId   String
+  facultyId    String
   firstName    String
   lastName     String
   middleName   String
