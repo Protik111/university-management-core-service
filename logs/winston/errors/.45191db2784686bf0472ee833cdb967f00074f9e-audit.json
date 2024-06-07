@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\rafiu\\OneDrive\\Desktop\\My_Resources\\My_Files\\Learning_Dev_Resources\\Courses\\PH-2\\Projects\\university-management-core-service\\logs\\winston\\errors\\.45191db2784686bf0472ee833cdb967f00074f9e-audit.json",
+    "files": [
+        {
+            "date": 1717754575672,
+            "name": "C:\\Users\\rafiu\\OneDrive\\Desktop\\My_Resources\\My_Files\\Learning_Dev_Resources\\Courses\\PH-2\\Projects\\university-management-core-service\\logs\\winston\\errors\\phu-2024-07-06-16-error.log",
+            "hash": "bd2052b27ef934133e961ab39f03c7db8db5aa6be15a8f9aa870db40eec75878"
+        },
+        {
+            "date": 1717774102917,
+            "name": "C:\\Users\\rafiu\\OneDrive\\Desktop\\My_Resources\\My_Files\\Learning_Dev_Resources\\Courses\\PH-2\\Projects\\university-management-core-service\\logs\\winston\\errors\\phu-2024-07-06-21-error.log",
+            "hash": "91c6dff6d392c700922950898e085c0e2b9be72c316d5d2de0cd7a6b44902948"
+        }
+    ],
+    "hashType": "sha256"
+}

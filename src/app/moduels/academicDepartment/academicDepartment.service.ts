@@ -7,7 +7,7 @@ import {
   academicDepartmentRelationalFields,
   academicDepartmentRelationalFieldsMapper,
   academicDepartmentSearchableFields,
-} from './academicDepartment.contants';
+} from './academicDepartment.constants';
 import { IAcademicDepartmentFilterRequest } from './academicDepartment.interface';
 
 const insertIntoDB = async (
