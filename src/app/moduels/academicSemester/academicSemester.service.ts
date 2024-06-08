@@ -9,9 +9,18 @@ import { RedisClient } from '../../../shared/redis';
 import {
   AcademicSemesterSearchAbleFields,
   EVENT_ACADEMIC_SEMESTER_CREATED,
+  EVENT_ACADEMIC_SEMESTER_DELETED,
+  EVENT_ACADEMIC_SEMESTER_UPDATED,
   academicSemesterTitleCodeMapper,
 } from './academicSemester.constants';
 import { IAcademicSemesterFilterRequest } from './academicSemester.interface';
+// import {
+//   AcademicSemesterSearchAbleFields,
+//   EVENT_ACADEMIC_SEMESTER_CREATED,
+//   EVENT_ACADEMIC_SEMESTER_DELETED,
+//   EVENT_ACADEMIC_SEMESTER_UPDATED,
+//   academicSemesterTitleCodeMapper,
+// } from './academicSemeter.constants';
 
 const insertIntoDB = async (
   academicSemesterData: AcademicSemester
@@ -25,6 +34,8 @@ const insertIntoDB = async (
   const result = await prisma.academicSemester.create({
     data: academicSemesterData,
   });
+
+  console.log(result, 'result core');
 
   if (result) {
     await RedisClient.publish(
@@ -121,6 +132,12 @@ const updateOneInDB = async (
     },
     data: payload,
   });
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_SEMESTER_UPDATED,
+      JSON.stringify(result)
+    );
+  }
   return result;
 };
 
@@ -130,6 +147,13 @@ const deleteByIdFromDB = async (id: string): Promise<AcademicSemester> => {
       id,
     },
   });
+
+  if (result) {
+    await RedisClient.publish(
+      EVENT_ACADEMIC_SEMESTER_DELETED,
+      JSON.stringify(result)
+    );
+  }
   return result;
 };
 
